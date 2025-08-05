@@ -8,7 +8,7 @@ import {
     Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { CustomPicker } from './CustomPicker';
+import CustomPicker from './CustomPicker';
 import { colors, commonStyles, spacing, typography } from '../styles';
 import { Expenses, Labels, FilterPeriod } from '../types';
 import { convertCurrency, formatCurrency } from '../utils/currency';
@@ -75,7 +75,7 @@ export default function ExpenseListView({
 
     const getTotalAmount = () => {
         return filteredExpenses.reduce((total, [_, expense]) => {
-            const expenseCurrency = expense.labels.currency || 'ARS';
+            const expenseCurrency = expense.labels.currency || 'EUR';
             return (
                 total +
                 convertCurrency(
@@ -93,7 +93,7 @@ export default function ExpenseListView({
     }: {
         item: [string, (typeof expenses)[string]];
     }) => {
-        const expenseCurrency = expense.labels.currency || 'ARS';
+        const expenseCurrency = expense.labels.currency || 'EUR';
         const convertedAmount = convertCurrency(
             expense.value,
             expenseCurrency,
@@ -159,7 +159,7 @@ export default function ExpenseListView({
                 <CustomPicker
                     label="Filter by Period"
                     selectedValue={filterPeriod}
-                    onValueChange={(value) =>
+                    onValueChange={(value: string) =>
                         setFilterPeriod(value as FilterPeriod)
                     }
                     items={['all', 'week', 'month', 'year']}
@@ -168,7 +168,7 @@ export default function ExpenseListView({
                 <CustomPicker
                     label="Filter by Label"
                     selectedValue={selectedLabel}
-                    onValueChange={(value) => {
+                    onValueChange={(value: string) => {
                         setSelectedLabel(value);
                         setSelectedLabelValue('all');
                     }}

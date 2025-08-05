@@ -139,7 +139,7 @@ export default function AddExpenseScreen() {
                             handleLabelChange(labelName, value)
                         }
                         items={label.values.map((v) => v.value)}
-                        enabled={!label.isFixed || labelName !== 'currency'}
+                        enabled={true}
                     />
                 ))}
 

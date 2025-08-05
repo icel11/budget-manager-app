@@ -2,8 +2,9 @@ import React from 'react';
 import {
     TouchableOpacity,
     Text,
-    StyleSheet,
     ActivityIndicator,
+    ViewStyle,
+    TextStyle,
 } from 'react-native';
 import { colors, commonStyles, spacing } from '../styles';
 
@@ -24,42 +25,71 @@ export default function CustomButton({
     variant = 'primary',
     size = 'medium',
 }: CustomButtonProps) {
-    const getButtonStyle = () => {
-        const baseStyle = [commonStyles.button];
+    const getButtonStyle = (): ViewStyle => {
+        let buttonStyle: ViewStyle = { ...commonStyles.button };
 
         if (variant === 'secondary') {
-            baseStyle.push(styles.secondaryButton);
+            buttonStyle = {
+                ...buttonStyle,
+                backgroundColor: colors.surface,
+                borderWidth: 1,
+                borderColor: colors.accent,
+            };
         } else if (variant === 'danger') {
-            baseStyle.push(styles.dangerButton);
+            buttonStyle = {
+                ...buttonStyle,
+                backgroundColor: colors.error,
+            };
         }
 
         if (size === 'small') {
-            baseStyle.push(styles.smallButton);
+            buttonStyle = {
+                ...buttonStyle,
+                paddingVertical: spacing.sm,
+                paddingHorizontal: spacing.md,
+            };
         } else if (size === 'large') {
-            baseStyle.push(styles.largeButton);
+            buttonStyle = {
+                ...buttonStyle,
+                paddingVertical: spacing.lg,
+                paddingHorizontal: spacing.xl,
+            };
         }
 
         if (disabled) {
-            baseStyle.push(styles.disabledButton);
+            buttonStyle = {
+                ...buttonStyle,
+                backgroundColor: colors.surfaceSecondary,
+                opacity: 0.6,
+            };
         }
 
-        return baseStyle;
+        return buttonStyle;
     };
 
-    const getTextStyle = () => {
-        const baseStyle = [commonStyles.buttonText];
+    const getTextStyle = (): TextStyle => {
+        let textStyle: TextStyle = { ...commonStyles.buttonText };
 
         if (size === 'small') {
-            baseStyle.push(styles.smallText);
+            textStyle = {
+                ...textStyle,
+                fontSize: 14,
+            };
         } else if (size === 'large') {
-            baseStyle.push(styles.largeText);
+            textStyle = {
+                ...textStyle,
+                fontSize: 18,
+            };
         }
 
         if (disabled) {
-            baseStyle.push(styles.disabledText);
+            textStyle = {
+                ...textStyle,
+                color: colors.textTertiary,
+            };
         }
 
-        return baseStyle;
+        return textStyle;
     };
 
     return (
@@ -77,34 +107,3 @@ export default function CustomButton({
     );
 }
 
-const styles = StyleSheet.create({
-    secondaryButton: {
-        backgroundColor: colors.surface,
-        borderWidth: 1,
-        borderColor: colors.accent,
-    },
-    dangerButton: {
-        backgroundColor: colors.error,
-    },
-    smallButton: {
-        paddingVertical: spacing.sm,
-        paddingHorizontal: spacing.md,
-    },
-    largeButton: {
-        paddingVertical: spacing.lg,
-        paddingHorizontal: spacing.xl,
-    },
-    disabledButton: {
-        backgroundColor: colors.surfaceSecondary,
-        opacity: 0.6,
-    },
-    smallText: {
-        fontSize: 14,
-    },
-    largeText: {
-        fontSize: 18,
-    },
-    disabledText: {
-        color: colors.textTertiary,
-    },
-});

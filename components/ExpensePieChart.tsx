@@ -38,7 +38,7 @@ export default function ExpensePieChart({
 
         Object.values(expenses).forEach((expense) => {
             const category = expense.labels[categoryLabel] || 'Unknown';
-            const expenseCurrency = expense.labels.currency || 'ARS';
+            const expenseCurrency = expense.labels.currency || 'EUR';
             const convertedAmount = convertCurrency(
                 expense.value,
                 expenseCurrency,

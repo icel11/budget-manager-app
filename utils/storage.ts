@@ -12,9 +12,9 @@ export const getDefaultLabels = (): Labels => ({
     currency: {
         name: 'Currency',
         values: [
-            { value: 'ARS', isDefault: true },
+            { value: 'EUR', isDefault: true },
+            { value: 'ARS', isDefault: false },
             { value: 'CHF', isDefault: false },
-            { value: 'EUR', isDefault: false },
         ],
         isFixed: true,
     },
@@ -44,9 +44,9 @@ export const getDefaultLabels = (): Labels => ({
 });
 
 export const getDefaultCurrencyRates = (): CurrencyRates => ({
-    ARS: 1,
-    CHF: 1200,
-    EUR: 1100,
+    EUR: 1,
+    ARS: 1550,
+    CHF: 1.07,
 });
 
 // Storage operations for labels
@@ -151,7 +151,7 @@ export const migrateOldExpenses = async (): Promise<void> => {
                 time: expense.time,
                 value: expense.value,
                 labels: {
-                    currency: expense.currency || 'ARS',
+                    currency: expense.currency || 'EUR',
                     card: expense.card || 'CIC',
                     category: expense.category || 'Rent',
                 },

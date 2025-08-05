@@ -31,7 +31,7 @@ export default function HomeScreen() {
     const [expenses, setExpenses] = useState<Expenses>({});
     const [labels, setLabels] = useState<Labels>({});
     const [currencyRates, setCurrencyRates] = useState<CurrencyRates>({});
-    const [selectedCurrency, setSelectedCurrency] = useState<string>('ARS');
+    const [selectedCurrency, setSelectedCurrency] = useState<string>('EUR');
     const [viewMode, setViewMode] = useState<ViewMode>('list');
     const [total, setTotal] = useState(0);
 
@@ -82,7 +82,7 @@ export default function HomeScreen() {
         rates: CurrencyRates,
     ) => {
         const sum = Object.values(expensesData).reduce((acc, expense) => {
-            const expenseCurrency = expense.labels.currency || 'ARS';
+            const expenseCurrency = expense.labels.currency || 'EUR';
             return (
                 acc +
                 convertCurrency(expense.value, expenseCurrency, currency, rates)
@@ -190,7 +190,7 @@ export default function HomeScreen() {
     };
 
     const currencyOptions = labels.currency?.values.map((v) => v.value) || [
-        'ARS',
+        'EUR',
     ];
 
     return (

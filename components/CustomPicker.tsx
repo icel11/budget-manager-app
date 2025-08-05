@@ -29,7 +29,8 @@ export default function CustomPicker({
                     }
                     style={[commonStyles.picker, styles.picker]}
                     enabled={enabled}
-                    dropdownIconColor={colors.textSecondary}
+                    dropdownIconColor={colors.text}
+                    itemStyle={{ color: colors.text }}
                 >
                     {items.map((item, index) => (
                         <Picker.Item
@@ -37,6 +38,7 @@ export default function CustomPicker({
                             value={item}
                             key={index}
                             color={colors.text}
+                            style={{ color: colors.text }}
                         />
                     ))}
                 </Picker>

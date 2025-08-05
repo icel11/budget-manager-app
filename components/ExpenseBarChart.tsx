@@ -30,7 +30,7 @@ export default function ExpenseBarChart({
             const date = new Date(expense.time);
             const monthYear = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
             const category = expense.labels[categoryLabel] || 'Unknown';
-            const expenseCurrency = expense.labels.currency || 'ARS';
+            const expenseCurrency = expense.labels.currency || 'EUR';
 
             categories.add(category);
 
@@ -111,13 +111,15 @@ export default function ExpenseBarChart({
                         chartData.labels.length * 80,
                     )}
                     height={220}
+                    yAxisLabel=""
+                    yAxisSuffix=""
                     chartConfig={{
                         backgroundColor: colors.surface,
                         backgroundGradientFrom: colors.surface,
                         backgroundGradientTo: colors.surface,
                         decimalPlaces: 0,
-                        color: (opacity = 1) => colors.accent,
-                        labelColor: (opacity = 1) => colors.text,
+                        color: () => colors.accent,
+                        labelColor: () => colors.text,
                         style: {
                             borderRadius: 16,
                         },

@@ -11,7 +11,6 @@ export const convertCurrency = (
     const fromRate = rates[fromCurrency] || 1;
     const toRate = rates[toCurrency] || 1;
 
-    // Convert to base currency (ARS) first, then to target currency
     const baseAmount = amount / fromRate;
     return baseAmount * toRate;
 };
